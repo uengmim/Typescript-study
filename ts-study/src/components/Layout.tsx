@@ -1,6 +1,6 @@
 import * as React from 'react'
-import Link from 'next/link'
-import Head from 'next/head'
+import Link from 'link'
+import Head from 'head'
 
 type Props = {
   title?: string
@@ -24,7 +24,7 @@ const Layout: React.FunctionComponent<Props> = ({
         |{' '}
         <Link href="/about">
           <a>About</a>
-          
+
         </Link>{' '}
         |{' '}
         <Link href="/users">
