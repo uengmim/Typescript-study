@@ -1,3 +1,6 @@
-"use strict";
-const message = 'hello world';
-console.log(message);
+const a = 7
+function double() {
+    console.log(a*2)
+}
+
+double()
