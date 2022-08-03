@@ -29,3 +29,16 @@
 
 ### 3. 객체지향 프로그래밍 지원
 타입스크립트는 ES6에서 새롭게 사용된 문법을 포함하고 있으며, class, interface, instance, module과 같은 객체지향 프로그래밍 패턴을 제공한다.
+
+## 제너릭
+제네릭이란 타입을 마치 함수의 파라미터처럼 사용하는 것을 의미.
+```javascript
+function test<T>(text:T) : T{
+  return text;
+  }
+```
+1. return의 값을 T로 정의함.
+2. text의 파라미터도 T로 정의 함.
+3. text를 return 함.
+4. T를 만약 string으로 정의한다면, 는 타입을 마치 파라미터처럼 사용한다고 했으니, return의 타입을 T로 정의하는것과 같다. T가 string이 된다면, Text또한 string이므로, return 또한 string이 된다.
+  
