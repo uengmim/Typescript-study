@@ -28,7 +28,15 @@
 타입스크립트는 자바스크립트의 확장 언어이기 떄문에 유효한 자바스크립트 언어는 타입스크립트로 변환해 컴파일 할 수 있다.
 
 ### 3. 객체지향 프로그래밍 지원
-타입스크립트는 ES6에서 새롭게 사용된 문법을 포함하고 있으며, class, interface, instance, module과 같은 객체지향 프로그래밍 패턴을 제공한다.
+타입스크립트는 ES6에서 새롭게 사용된 문법을 포함하고 있으며, class, interface, instance, module과 같은 객체지향 프로그래밍 패턴을 제공한다.  
+  
+## Typescript
+![image](https://user-images.githubusercontent.com/72143238/184040783-196707a6-c153-479f-9ae1-c92a471e3994.png)
+✔ 사전의 애러방지 <br>
+✔ 코드가이드 및 자동완성
+사용하다 보면 타입에 대한 에러들이 발생하는데 Props로 데이터를 전달 받을 수 있다. 하지만 Props를 전달 받기 전 컴포넌트가 먼저 읽힐 경우, props를 찾을 수 없어 브라우저에서 undefined를 반환한다.
+
+하지만 props의 기본적인 타입을 정의해준다면 , 이러한 애러들을 사전에 방지 할 수 있다.
 
 ## 제네릭
 제네릭이란 타입을 마치 함수의 파라미터처럼 사용하는 것을 의미.
@@ -41,7 +49,7 @@ function test<T>(text:T) : T{
 2. text의 파라미터도 T로 정의 함.
 3. text를 return 함.
 4. T를 만약 string으로 정의한다면, 는 타입을 마치 파라미터처럼 사용한다고 했으니, return의 타입을 T로 정의하는것과 같다. T가 string이 된다면, Text또한 string이므로, return 또한 string이 된다.
-  
+
 ### 제네릭의 기본 구조
 ```javascript
   const arr= Array<string> //Array안에 elem은 string이라는 것.
