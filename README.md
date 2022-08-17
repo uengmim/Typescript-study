@@ -1,6 +1,6 @@
 # Typescript-study
 타입스크립트 공부
-#### [📑 객체와 타입]https://github.com/uengmim/Typescript-study/tree/main/ts-study/src/utils)
+#### [📑 객체와 타입](https://github.com/uengmim/Typescript-study/tree/main/ts-study/src/utils)
 ## Typescript란?
 타입스크립트는 2012 년 마이크로소프트가 발표한 자바스크립트를 기반으로 정적 타입 문법을 추가한 프로그래밍 언어.
 
