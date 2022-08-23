@@ -69,3 +69,13 @@ a = 'hello';
 a = true;
 a = {};
 ```
+### undefined 타입
+- 자바스크립트에서 undefined는 값. (변수를 초기화하지 않았을 때)
+- 그러나 타입스크립트에서 undefined는 타입 or 값.
+```javascript
+let u: undefined = undefined;
+u = 1; // Type '1' is not assignable to type 'undefined' 오류 발생
+```
+- 타입의 상속 관계를 보면 any는 모든 타입의 루트 타입, 즉 최상위 타입.
+- 반면에 undefined는 모든 타입의 최하위 타입.
+![image](https://user-images.githubusercontent.com/72143238/186284066-07bbadf0-9aea-4906-b2ac-cc7acceb6dd8.png)
