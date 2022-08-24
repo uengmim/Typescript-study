@@ -79,3 +79,24 @@ u = 1; // Type '1' is not assignable to type 'undefined' 오류 발생
 - 타입의 상속 관계를 보면 any는 모든 타입의 루트 타입, 즉 최상위 타입.
 - 반면에 undefined는 모든 타입의 최하위 타입.
 ![image](https://user-images.githubusercontent.com/72143238/186284066-07bbadf0-9aea-4906-b2ac-cc7acceb6dd8.png)
+
+### 템플릿 문자열
+- 변수에 담긴 값을 조합해 문자열을 만들 수 있게 하는 템플릿 문자열을 제공.
+
+```javascript
+let count = 10, message = 'Your count';
+let result = `${message} is ${count}`;
+console.log(result); // Your count is 10
+```
+
+### 객체와 인터페이스
+- object 타입은 인터페이스와 클래스의 상위 타입.
+- object 타입으로 선언된 변수는 number, boolean, string타입의 값을 가질 수는 없지만, 다음처럼 속성 이름이 다른 객체를 모두 자유롭게 담을 수 있음.
+
+```javascript
+let o: object = { name: 'Jack', age: 32 };
+o = { first: 1, second: 2 };
+```
+- object 타입은 마치 객체를 대상으로 하는 any 타입처럼 동작.
+- 타입스크립트의 인터페이스 구문은 이렇게 동작하지 않게 하려는 목적으로 고안됨.
+- 즉, 변수 o에는 항상 name과 age 속성으로 구성된 객체만 가질 수 있게 해서 다른 타입일 경우 오류를 발생하게 함.
