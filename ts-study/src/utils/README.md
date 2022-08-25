@@ -89,7 +89,7 @@ let result = `${message} is ${count}`;
 console.log(result); // Your count is 10
 ```
 
-### 객체와 인터페이스
+## 객체와 인터페이스
 - object 타입은 인터페이스와 클래스의 상위 타입.
 - object 타입으로 선언된 변수는 number, boolean, string타입의 값을 가질 수는 없지만, 다음처럼 속성 이름이 다른 객체를 모두 자유롭게 담을 수 있음.
 
@@ -100,3 +100,30 @@ o = { first: 1, second: 2 };
 - object 타입은 마치 객체를 대상으로 하는 any 타입처럼 동작.
 - 타입스크립트의 인터페이스 구문은 이렇게 동작하지 않게 하려는 목적으로 고안됨.
 - 즉, 변수 o에는 항상 name과 age 속성으로 구성된 객체만 가질 수 있게 해서 다른 타입일 경우 오류를 발생하게 함.
+
+### 인터페이스 선언문
+- 타입스크립트는 객체의 타입을 정의할 수 있게 하는 interface라는 키워드를 제공.
+```javascript
+interface IPerson {
+  name: string;
+  age: number;
+};
+```
+- 인터페이스의 목적은 객체의 타입 범위를 좁히는 데 있음. 따라서 다음처럼 IPerson 인터페이스의 조건을 벗어나는 코드는 모두 오류 발생.
+```javascript
+interface IPerson {
+  name: string;
+  age: number;
+};
+
+let good: IPerson = { name: 'Jack', age: 32 };
+
+// 'age' 속성이 '{ name: string; }' 형식에 없지만 'IPerson' 형식에서 필수입니다.
+let bad1: IPerson = { name: 'Jack' };
+// 'name' 속성이 '{ age: number; }' 형식에 없지만 'IPerson' 형식에서 필수입니다.
+let bad2: IPerson = { age: 32 };
+// '{}' 형식에 'IPerson' 형식의 name, age 속성이 없습니다.
+let bad3: IPerson = {};
+// 개체 리터럴은 알려진 속성만 지정할 수 있으며 'IPerson' 형식에 'etc'이(가) 없습니다.
+let bad4: IPerson = { name: 'Jack', age: 32, etc: true };
+```
