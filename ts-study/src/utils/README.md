@@ -118,12 +118,25 @@ interface IPerson {
 
 let good: IPerson = { name: 'Jack', age: 32 };
 
-// 'age' 속성이 '{ name: string; }' 형식에 없지만 'IPerson' 형식에서 필수입니다.
+// 'age' 속성이 '{ name: string; }' 형식에 없지만 'IPerson' 형식에서 필수.
 let bad1: IPerson = { name: 'Jack' };
-// 'name' 속성이 '{ age: number; }' 형식에 없지만 'IPerson' 형식에서 필수입니다.
+// 'name' 속성이 '{ age: number; }' 형식에 없지만 'IPerson' 형식에서 필수.
 let bad2: IPerson = { age: 32 };
-// '{}' 형식에 'IPerson' 형식의 name, age 속성이 없습니다.
+// '{}' 형식에 'IPerson' 형식의 name, age 속성이 없음.
 let bad3: IPerson = {};
-// 개체 리터럴은 알려진 속성만 지정할 수 있으며 'IPerson' 형식에 'etc'이(가) 없습니다.
+// 개체 리터럴은 알려진 속성만 지정할 수 있으며 'IPerson' 형식에 'etc'이(가) 없음.
 let bad4: IPerson = { name: 'Jack', age: 32, etc: true };
+```
+### 선택 속성 구문
+- 인터페이스를 설계할 때 어떤 속성은 반드시 있어야 하지만, 어떤 속성은 있어도 되고 없어도 되는 형태로 만들어야함.
+- 이러한 속성을 선택 속성(optional property)이라고 함.
+```javascript
+interface IPerson2 {
+  name: string;
+  age: number;
+  etc?: boolean; // optional property
+}
+
+let good1: IPerson2 = { name: 'Jack', age: 32 };
+let good2: IPerson2 = { name: 'Jack', age: 32, etc: true };
 ```
