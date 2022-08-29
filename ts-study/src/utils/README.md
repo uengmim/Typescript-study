@@ -140,3 +140,25 @@ interface IPerson2 {
 let good1: IPerson2 = { name: 'Jack', age: 32 };
 let good2: IPerson2 = { name: 'Jack', age: 32, etc: true };
 ```
+### 익명 인터페이스
+- 타입스크립트는 interface 키워드도 사용하지 않고 인터페이스의 이름도 없는 인터페이스를 만들 수 있음.
+- 이를 익명 인터페이스(anonymous interface).
+- 익명 인터페이스 예
+```javascript
+let ai: {
+  name: string,
+  age: number,
+  etc?: boolean,
+} = { name: 'Jack', age: 32 };
+```
+- 함수에 사용된 익명 인터페이스 예
+```javascript
+function printMe(me: { name: string, age: number, etc?: boolean }) {
+  console.log(
+    me.etc?
+      `${me.name} ${me.age} ${me.etc}` :
+      `${me.name} ${me.age}`
+  );
+}
+```
+printMe(ai); // Jack 32
