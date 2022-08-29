@@ -118,12 +118,47 @@ interface IPerson {
 
 let good: IPerson = { name: 'Jack', age: 32 };
 
-// 'age' 속성이 '{ name: string; }' 형식에 없지만 'IPerson' 형식에서 필수입니다.
+// 'age' 속성이 '{ name: string; }' 형식에 없지만 'IPerson' 형식에서 필수.
 let bad1: IPerson = { name: 'Jack' };
-// 'name' 속성이 '{ age: number; }' 형식에 없지만 'IPerson' 형식에서 필수입니다.
+// 'name' 속성이 '{ age: number; }' 형식에 없지만 'IPerson' 형식에서 필수.
 let bad2: IPerson = { age: 32 };
-// '{}' 형식에 'IPerson' 형식의 name, age 속성이 없습니다.
+// '{}' 형식에 'IPerson' 형식의 name, age 속성이 없음.
 let bad3: IPerson = {};
-// 개체 리터럴은 알려진 속성만 지정할 수 있으며 'IPerson' 형식에 'etc'이(가) 없습니다.
+// 개체 리터럴은 알려진 속성만 지정할 수 있으며 'IPerson' 형식에 'etc'이(가) 없음.
 let bad4: IPerson = { name: 'Jack', age: 32, etc: true };
 ```
+### 선택 속성 구문
+- 인터페이스를 설계할 때 어떤 속성은 반드시 있어야 하지만, 어떤 속성은 있어도 되고 없어도 되는 형태로 만들어야함.
+- 이러한 속성을 선택 속성(optional property)이라고 함.
+```javascript
+interface IPerson2 {
+  name: string;
+  age: number;
+  etc?: boolean; // optional property
+}
+
+let good1: IPerson2 = { name: 'Jack', age: 32 };
+let good2: IPerson2 = { name: 'Jack', age: 32, etc: true };
+```
+### 익명 인터페이스
+- 타입스크립트는 interface 키워드도 사용하지 않고 인터페이스의 이름도 없는 인터페이스를 만들 수 있음.
+- 이를 익명 인터페이스(anonymous interface).
+- 익명 인터페이스 예
+```javascript
+let ai: {
+  name: string,
+  age: number,
+  etc?: boolean,
+} = { name: 'Jack', age: 32 };
+```
+- 함수에 사용된 익명 인터페이스 예
+```javascript
+function printMe(me: { name: string, age: number, etc?: boolean }) {
+  console.log(
+    me.etc?
+      `${me.name} ${me.age} ${me.etc}` :
+      `${me.name} ${me.age}`
+  );
+}
+```
+printMe(ai); // Jack 32
