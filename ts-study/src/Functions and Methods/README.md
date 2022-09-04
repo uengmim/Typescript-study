@@ -34,3 +34,48 @@ function printMe(name: string, age: number): void {
 let printMe: (string, number) => void = function (name: string, age: number): void {}
 ```
 - 만약 매개변수가 없으면 단순히 ()로 표현한다. () => void는 매개변수도 없고 반환값도 없는 함수 시그니처
+
+### undefined 관련 주의 사항
+- undefined 타입은 타입스크립트의 타입 계층도에서 모든 타입 중 최하위 타입.
+- undefined를 고려하지 않은 예.
+```javascript
+interface INameable {
+  name: string;
+}
+
+function getName(o: INameable) { return o.name; }
+
+let n = getName(undefined); // 오류 발생
+console.log(n);
+```
+- getName은 INameable 타입의 매개변수를 요구하지만, undefined 호출해도 구문 오류가 발생하지 않음.
+- 즉, undefined는 최하위 타입이므로 INameable을 상속하는 자식 타입으로 간주.
+- 하지만, 코드를 실행하면 오류가 발생.
+- undefined를 고려한 예.
+```javascript
+interface INameable {
+  name: string;
+}
+
+function getName(o: INameable) {
+  return o != undefined ? o.name : 'unknown name';
+}
+
+let n = getName(undefined);
+console.log(n); // unknown name
+console.log(getName({ name: 'Jack' })); // Jack
+```
+- 만약 인터페이스에 선택 속성이 있다면 다음과 같이 구현해야 함
+```javascript
+interface IAgeable {
+  age?: number;
+}
+
+function getAge(o: IAgeable) {
+  return o != undefined && o.age ? o.age : 0;
+}
+
+console.log(getAge(undefined)); // 0
+console.log(getAge(null)); // 0
+console.log(getAge({ age: 32 })); // 32
+```
