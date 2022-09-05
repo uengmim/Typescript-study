@@ -66,8 +66,6 @@ console.log(n); // unknown name
 console.log(getName({ name: 'Jack' })); // Jack
 ```
 - 만약 인터페이스에 선택 속성이 있다면 다음과 같이 구현해야 함
-```javascript
-interface IAgeable {
   age?: number;
 }
 
@@ -78,4 +76,20 @@ function getAge(o: IAgeable) {
 console.log(getAge(undefined)); // 0
 console.log(getAge(null)); // 0
 console.log(getAge({ age: 32 })); // 32
+```
+### 선택적 매개변수
+- 함수의 매개변수에도 다음처럼 이름 뒤에 물음표를 붙일 수 있으며, 이를 선택적 매개변수라고 함
+```javascript
+function fn(arg1: string, arg?: number): void {}
+```
+- 선택적 매개변수는 다음 코드에서 함수 호출을 모두 가능하게 하고 싶을 때 사용함.
+```javascript
+function fn(arg1: string, arg?: number) { console.log(`arg: ${arg}`); }
+
+fn('hello', 1); // arg: 1
+fn('hello'); // arg: undefined
+```
+- 선택적 매개변수가 있는 함수의 시그니처는 다음처럼 타입 뒤에 물음표를 붙임.
+```javascript
+type OptionalArgFunc = (string, number?) => void
 ```
