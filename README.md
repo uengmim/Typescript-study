@@ -1,5 +1,6 @@
 # Typescript-study
 타입스크립트 공부
+#### [📑 제네릭](https://github.com/uengmim/Typescript-study/tree/main/ts-study/src/example)
 #### [📑 객체와 타입](https://github.com/uengmim/Typescript-study/tree/main/ts-study/src/Object%20and%20Type)
 #### [📑 함수와 메서드](https://github.com/uengmim/Typescript-study/tree/main/ts-study/src/Functions%20and%20Methods)
 
