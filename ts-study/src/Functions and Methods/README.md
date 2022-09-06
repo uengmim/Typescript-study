@@ -93,3 +93,21 @@ fn('hello'); // arg: undefined
 ```javascript
 type OptionalArgFunc = (string, number?) => void
 ```
+## 함수 표현식
+### 함수는 객체
+- 자바스크립트에서 함수는 Function 클래스의 인스턴스
+- 다음 코드의 add는 함수로서 동작한다는 의미
+```javascript
+let add = new Function('a', 'b', 'return a + b');
+let result = add(1, 2);
+console.log(result); // 3
+```
+- add 함수는 다음과 같은 형태로도 구현 가능
+```javascript
+let add2 = function(a, b) { 
+  return a + b; 
+}
+
+console.log(add2(1, 2)); // 3
+```
+- 이처럼 함수 선언문에서 함수 이름을 제외한 function(a, b) { return a + b; }와 같은 코드를 함수 표현식(function expression)
