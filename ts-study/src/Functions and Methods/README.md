@@ -152,3 +152,10 @@ let value =
 ### const 키워드와 함수 표현식
 - 함수 표현식을 담는 변수는 let 보다는 const 키워드로 선언하는 것이 바람직.
 - 함수 표현식을 담은 변수를 const키워드로 선언하면, 함수 내용이 이후에 절대로 바뀔 수 없음.
+## 화살표 함수와 표현식 문
+- 화살표 함수의 몸통은 function 떄와는 다르게 다음처럼 중괄호를 사용할 수도 있고 생략할 수도 있음.
+```javascript
+const arrow1 = (a: number, b: number): number => { return a + b }
+const arrow2 = (a: number, b: number): number => a + b;
+```
+- 중괄호 사용 여부에 따라 타입스크립트 문법이 동작하는 방식이 실행문(execution statement) 방식과 표현식 문(expression statement) 방식으로 달라짐.
