@@ -3,6 +3,7 @@
 #### [📑 제네릭](https://github.com/uengmim/Typescript-study/tree/main/ts-study/src/example)
 #### [📑 객체와 타입](https://github.com/uengmim/Typescript-study/tree/main/ts-study/src/Object%20and%20Type)
 #### [📑 함수와 메서드](https://github.com/uengmim/Typescript-study/tree/main/ts-study/src/Functions%20and%20Methods)
+#### [📑 배열과 튜플](https://github.com/uengmim/Typescript-study/tree/main/ts-study/src/Arrangement%20and%20tuple)
 
 ## Typescript란?
 타입스크립트는 2012 년 마이크로소프트가 발표한 자바스크립트를 기반으로 정적 타입 문법을 추가한 프로그래밍 언어.
