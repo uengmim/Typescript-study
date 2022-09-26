@@ -35,3 +35,14 @@ let personArray: IPerson[] = [
 - 타입스크립트에서는 문자 타입이 없고 문자열의 내용 또한 변경할 수 없으며 이러한 특징 때문에 문자열을 가공하려면 먼저 문자열을 배열로 전환
 - 보통 문자열을 배열로 전환할 때는 String 클래스의 split 메서드를 사용
 - string[] 타입의 배열을 다시 string 타입으로 변환하려면 Array 클래스의 join 메서드를 사용
+
+### 인덱스 연산자
+- 배열이 담고 있는 아이템 중 특정 위치에 있는 아이템을 얻고자 할 때는 인덱스 연산자[인덱스]를 사용
+```javascript
+const numbers: number[] = [1, 2, 3, 4, 5];
+
+for(let index = 0; index < numbers.length; index++) {
+  const item: number = numbers[index];
+  console.log(item); // 1 2 3 4 5
+}
+```
