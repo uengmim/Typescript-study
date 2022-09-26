@@ -17,3 +17,21 @@ let a = [1, 2, 3];
 let o = { name: 'Jack', age: 32 };
 console.log(Array.isArray(a), Array.isArray(o)); // true false
 ```
+### 배열의 타입
+- 타입스크립트에서 배열의 타입은 아이템 타입[]. 예를 들어, 배열의 아이템이 number 타입이면 배열의 타입은 number[]이고, 아이템이 string 타입이면 string[]
+```javascript
+let numArray: number[] = [1, 2, 3];
+let strArray: string[] = ['Hello', 'World'];
+
+type IPerson = { name: string, age?: number };
+let personArray: IPerson[] = [
+  { name: 'Jack' },
+  { name: 'Jane', age: 32 },
+];
+
+// [ { name: 'Jack' }, { name: 'Jane', age: 32 } ]
+```
+### 문자열과 배열 간 변환
+- 타입스크립트에서는 문자 타입이 없고 문자열의 내용 또한 변경할 수 없으며 이러한 특징 때문에 문자열을 가공하려면 먼저 문자열을 배열로 전환
+- 보통 문자열을 배열로 전환할 때는 String 클래스의 split 메서드를 사용
+- string[] 타입의 배열을 다시 string 타입으로 변환하려면 Array 클래스의 join 메서드를 사용
