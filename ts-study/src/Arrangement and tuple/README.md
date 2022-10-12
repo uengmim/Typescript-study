@@ -90,3 +90,14 @@ console.log(
   isEmpty([1]), // false
 );
 ```
+### 제네릭 함수의 타입 추론
+- 이 코드의 1행의 identity 함수는 제네릭 형태로 구현되어 있음
+- 제네릭 형태로 구현된 함수는 원칙적으로 3행처럼 타입 변수를 다음과 같은 형태로 명시해 주어야 함.
+```javascript
+const identity = <T>(n: T): T => n;
+
+console.log(
+  identity<boolean>(true), // true
+  identity(true), // true
+);
+```
