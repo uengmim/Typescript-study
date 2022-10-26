@@ -21,3 +21,75 @@ export const createRangeIterable = (from: number, to: number) => {
   }
 }
 ```
+###  for...of 구문과 [Symbol.iterator] 메서드
+
+```javascript
+for (let value of range(1, 3 + 1)) {
+  console.log(value); // 1 2 3
+}
+```
+- 그러나 다음 코드처럼 앞에서 작성한 createRangeIterable 함수를 for...of 구문에 적용하면 [Symbol.iterator]() 메서드가 없다는 오류가 발생
+```javascript
+const iterable = createRangeIterable(1, 3 + 1);
+for(let value of iterable) {
+  console.log(value);
+}
+```
+- RangeIterable 클래스는 [Symbol.iterator] 메서드를 구현
+```javascript
+class RangeIterable {
+  constructor(public from: number, public to: number) {};
+
+  [Symbol.iterator]() {
+    const that = this;
+    let currentValue = that.from;
+
+    return {
+      next() {
+        const value = currentValue < that.to ? currentValue++ : undefined;
+        const done = value === undefined;
+  
+        return { value, done };
+      }
+    }
+  }
+}
+
+const iterator = new RangeIterable(1, 3 + 1);
+
+for (const value of iterator) {
+  console.log(value); // 1 2 3
+}
+```
+### Iterable와 Iterator 인터페이스
+- 타입스크립트는 반복기 제공자에 Iterable<T>와 Iterator<T> 제네릭 인터페이스를 사용할 수 있다. Iterable<T>는 다음처럼 자신을 구현하는 클래스가 [Symbol.iterator] 메서드를 제공한다는 것을 명확하게 알려주는 역할을 함
+```javascript
+class 구현클래스 implements Iterable<생성할_값의_타입> {}
+```
+- 반복기 제공자를 타입스크립트가 제공하는 Iterable<T>와 Iterator<T>를 사용해 구현한 예
+```javascript
+export class StringIterable implements Iterable<string> {
+  constructor(private strings: string[] = [], private currentIndex: number = 0) {}
+
+  [Symbol.iterator](): Iterator<string> {
+    const that = this;
+    let currentIndex = that.currentIndex;
+    let length = that.strings.length;
+
+    const iterator: Iterator<string> = {
+      next(): { value: string, done: boolean } {
+        const value = currentIndex < length ? that.strings[currentIndex] : undefined;
+        const done = value === undefined;
+
+        return { value, done };
+      }
+    }
+
+    return iterator;
+  }
+}
+
+for (let value of new StringIterable(['hello', 'world', '!'])) {
+  console.log(value); // hello world !
+}
+```
