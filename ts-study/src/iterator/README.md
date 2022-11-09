@@ -93,3 +93,13 @@ for (let value of new StringIterable(['hello', 'world', '!'])) {
   console.log(value); // hello world !
 }
 ```
+### function* 키워드
+- generator 함수와 일반 함수와 다른점
+1. function* 키워드로 함수를 선언한다.
+2. 함수 몸통 안에 yield 문이 있다.
+- 즉, function* 키워드로 선언된 함수가 생성기인데, 생성기는 오직 function* 키워드로 선언해야 하므로 화살표 함수로는 생성기를 만들 수 없음.
+
+### yield 키워드
+- 생성기 함수 안에는 yield 문을 사용할 수 있으며 yield는 연산자 형태로 동작하며 다음처럼 두 가지 기능을 함
+1. 반복기를 자동으로 만들어 준다.
+2. 반복기 제공자 역할도 수행한다.
