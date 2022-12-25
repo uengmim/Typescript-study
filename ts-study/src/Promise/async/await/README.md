@@ -66,3 +66,66 @@ readFile('./package.json', (error: Error, buffer: Buffer) => {
   })
 });
 ```
+## Promise
+- 타입스크립트에서 Promise는 다음과 같이 제네릭 클래스 형태로 사용
+```javascript
+const numPromise: Promise<number> = new Promise<number>(콜백함수);
+const strPromise: Promise<string> = new Promise<string>(콜백함수);
+const arrayPromise: Promise<number[]> = new Promise<number[]>(콜백함수);
+```
+
+- 타입스크립트 Promise의 콜백 함수는 다음처럼 resolve와 reject 함수를 매개변수로 받는 형태
+```javascript
+new Promise<T>((
+  resolve: (successValue: T) => void,
+  reject: (any) => void,
+) => {
+  // 코드 구현
+});
+```
+### resolve와 reject 함수
+- 비동기 API인 readFile을 호출하는 내용을 프로미스로 구현한 예
+```javascript
+import { readFile } from 'fs';
+
+export const readFilePromise = (filename: string): Promise<string> =>
+  new Promise<string>((
+    resolve: (value: string) => void,
+    reject: (error: Error) => void) => {
+      readFile(filename, (err: Error, buffer: Buffer) => {
+        if(err) {
+          reject(err);
+        } else {
+          resolve(buffer.toString());
+        }
+      })
+    }
+  )
+```
+```javascript
+import { readFilePromise } from "./readFilePromise";
+
+readFilePromise('./package.json')
+  .then((content: string) => {
+    console.log(content);
+    return readFilePromise('./tsconfig.json');
+  })
+  .then((content: string) => {
+    console.log(content);
+    return readFilePromise('.');
+  })
+  .catch((err: Error) => console.log('error: ', err.message))
+  .finally(() => console.log('프로그램 종료'));
+```
+
+### Promise.resolve와 Promise.reject 메서드
+- Promise.resolve(값) 형태로 호출하면 항상 이 갑은 then 메서드에서 얻을 수 있음
+```javascript
+Promise.resolve({ name: 'Jack', age: 32 })
+  .then(value => console.log(value)); // { name: 'Jack', age: 32 }
+  ```
+- Promise.reject(Error 타입 객체)를 호출하면 이 Error 타입 객체는 항상 catch 메서드의 콜백 함수에서 얻을 수 있다.
+```javascript
+Promise.reject(new Error('에러 발생'))
+  .catch((err: Error) => console.log('error: ', err.message)); // error: 에러 발생
+```
