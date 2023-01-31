@@ -45,16 +45,42 @@ model.find(item => item.MATNR === selectedData[0].MATNR && item.ZSTOCK >= select
 ```
 ## 몫 구해서 넣고 나머지 구해서 넣기
 ```javascript
-    var result = Math.trunc(this.carFormData.ZMENGE3 / (this.carFormData.ZLITER / this.carFormData.ZCARTANK));
-    var remainder = this.carFormData.ZMENGE3 % (this.carFormData.ZLITER / this.carFormData.ZCARTANK)
-    for (var i = 1; i <= result; i++) {
-      const name = "load" + i;
-      Object.assign(this.carFormData, { [name]: (this.carFormData.ZLITER / this.carFormData.ZCARTANK) });
-    }
-    const name = "load" + (result + 1);
-    Object.assign(this.carFormData, { [name]: remainder });
+var result = Math.trunc(this.carFormData.ZMENGE3 / (this.carFormData.ZLITER / this.carFormData.ZCARTANK));
+var remainder = this.carFormData.ZMENGE3 % (this.carFormData.ZLITER / this.carFormData.ZCARTANK)
+for (var i = 1; i <= result; i++) {
+  const name = "load" + i;
+  Object.assign(this.carFormData, { [name]: (this.carFormData.ZLITER / this.carFormData.ZCARTANK) });
+}
+const name = "load" + (result + 1);
+Object.assign(this.carFormData, { [name]: remainder });
  ```
 ## 데이트그리드 다시 조회
 ```javascript
  this.dataGrid.instance.refresh();
+```
+
+## 데이터그리드 클릭 시 폼데이터 바인딩
+```javascript
+selectionChanged(e: any) {
+setTimeout(() => {
+  const rowData = e.selectedRowsData[0];
+
+  if (rowData) {
+    this.FormData = rowData;
+  }
+}, 100);
+}
+```
+## 파서블 엔트리 선택시 연관 데이터 출력
+```
+onValueChanged(e: any) {
+setTimeout(() => {
+  this.FormData.ZCARNO = e.selectedItem.ZCARNO;
+  this.FormData.ZDRIVER = e.selectedItem.ZDERIVER1;
+  this.FormData.ZPHONE = e.selectedItem.ZPHONE1;
+  this.FormData.ZRFID = e.selectedItem.ZRFID;
+  return;
+});
+}
+  ```
 ```
