@@ -72,7 +72,7 @@ setTimeout(() => {
 }
 ```
 ## 파서블 엔트리 선택시 연관 데이터 출력
-```
+```javascript
 onValueChanged(e: any) {
 setTimeout(() => {
   this.FormData.ZCARNO = e.selectedItem.ZCARNO;
@@ -83,4 +83,23 @@ setTimeout(() => {
 });
 }
   ```
+```
+## 버튼 클릭시 버튼 변경 이벤트
+```javascript
+manualRegis = (e:any) => {
+  setTimeout(() => {
+
+    if (this.inProgress) {
+      this.testBox.editorOptions = { disabled: false };
+      this.buttonText = '계근 등록';
+      this.weightStartData.STATUS = "수동 입력 상태";
+    } else {
+      this.testBox.editorOptions = { disabled: true };
+      this.buttonText = '수동 등록';
+      this.weightStartData.STATUS = "계근 입력 상태";
+    }
+    this.inProgress = !this.inProgress;
+  });
+  this.form.instance.repaint();
+}
 ```
