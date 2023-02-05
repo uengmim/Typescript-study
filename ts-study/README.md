@@ -103,3 +103,7 @@ manualRegis = (e:any) => {
   this.form.instance.repaint();
 }
 ```
+## 페이지 리로드
+```javascript
+setTimeout("location.reload(true);");
+```
