@@ -6,7 +6,13 @@
 ```
 ## 날짜 형식 초기화
 ```javascript
-var sdate = formatDate(this.startDate, "yyyyMMdd", "en-US")
+now: Date = new Date();
+
+var sdate = formatDate(this.startDate, "yyyyMMdd", "en-US");
+
+this.newDate = formatDate(this.now.setDate(this.now.getDate()), "yyyy-MM-dd", "en-US");
+
+this.startDate = formatDate(this.now.setDate(this.now.getDate() - 7), "yyyy-MM-dd", "en-US");
 ```
 ## 날짜 초기화
 ```javascript
@@ -34,14 +40,19 @@ Object.assign(this.listSearchDetailFormData, { RFQCST: rfgcst1, RFQVAT: rfgvat1,
 var insertText = this.oilFormData.ZTEXT;  
 var ztext = encodeURI(insertText).split(/%..|./).length - 1;
 ```
-## 특정 부분 제외하고 조회
-```javascript
-resultModel[0].IT_DATA.filter(item => item.WBSTK !== "C");
-```
 ## 특정 조건으로 조회
 ```javascript
 var model: ZMMS3200Model[] = this.oilSubGridData as ZMMS3200Model[]
 model.find(item => item.MATNR === selectedData[0].MATNR && item.ZSTOCK >= selectedData[0].ZMENGE4)
+```
+## 배열에서 특정 조건으로 조회
+```javascript
+ var resultValue = this.kunweCodeDynamic.gridDataSource._array.find(obj => obj.KUNNR == e.selectedValue);
+ ```
+## 특정 부분 제외하고 조회
+```javascript
+resultModel[0].IT_DATA.filter(item => item.WBSTK !== "C");
+var sameData = thisObj.orderList.filter(item => item.VBELN === selectData[0].VBELN && item.POSNR === selectData[0].POSNR);
 ```
 ## 몫 구해서 넣고 나머지 구해서 넣기
 ```javascript
