@@ -29,7 +29,7 @@ this.FormData.BIDNO.padStart(3, '0');
 ```
 ## 0 뒷부분부터 채우기
 ```javascript
-this.FormData.BIDNO.padeEnd(3, '0');
+this.FormData.BIDNO.padEnd(3, '0');
 ```
 ## 필드에 값 강제로 넣기
 ```javascript
@@ -94,7 +94,7 @@ setTimeout(() => {
 });
 }
   ```
-```
+
 ## 버튼 클릭시 버튼 변경 이벤트
 ```javascript
 manualRegis = (e:any) => {
