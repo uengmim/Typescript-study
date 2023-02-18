@@ -118,3 +118,11 @@ manualRegis = (e:any) => {
 ```javascript
 setTimeout("location.reload(true);");
 ```
+## 날짜순으로 정렬
+```javascript
+  const sorted_list = this.oilSubGridData.sort(function (a, b) {
+    return new Date(a.ZARRDT).getTime() - new Date(b.ZARRDT).getTime();
+  });
+        sorted_list.forEach(async (array: any) => {
+}
+  ```
