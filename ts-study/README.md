@@ -18,6 +18,14 @@ this.startDate = formatDate(this.now.setDate(this.now.getDate() - 7), "yyyy-MM-d
 ```javascript
 new Date("0001-01-01");
 ```
+## 날짜순으로 정렬
+```javascript
+  const sorted_list = this.oilSubGridData.sort(function (a, b) {
+    return new Date(a.ZARRDT).getTime() - new Date(b.ZARRDT).getTime();
+  });
+        sorted_list.forEach(async (array: any) => {
+}
+  ```
 ## 시간 초기화
 ```javascript
 carData.startTime1 ?? "54000000"
@@ -118,11 +126,10 @@ manualRegis = (e:any) => {
 ```javascript
 setTimeout("location.reload(true);");
 ```
-## 날짜순으로 정렬
+## 딜레이 주기
 ```javascript
-  const sorted_list = this.oilSubGridData.sort(function (a, b) {
-    return new Date(a.ZARRDT).getTime() - new Date(b.ZARRDT).getTime();
-  });
-        sorted_list.forEach(async (array: any) => {
-}
-  ```
+ setTimeout(() => {
+   this.popItemData.Z4PARVW = e.selectedValue;
+   /*this.tdlnrValue = e.selectedValue;*/
+ });
+ ```
