@@ -133,3 +133,24 @@ setTimeout("location.reload(true);");
    /*this.tdlnrValue = e.selectedValue;*/
  });
  ```
+ ## 할당된 폼에 값 빼기
+```javascript
+     var total = this.carFormData.ZMENGE3;
+    for (var i = 1; i <= this.carFormData.ZCARTANK; i++) {
+      const name = "load" + i;      //적재필드명
+      const key = "ZTANKLITER" + i; //유창필드명
+
+      //출고량을 가지고 유창의 용량만큼 빼주면서 값이 양수일때는 유창의 용량으로 적재하면서 출고량에서 적재량 빼주기
+      //음수라면 현재 total의 출고량이 마지막 용량이므로 total값을 넣어준다.
+      if ((total - this.carFormData[key]) > 0) {
+        this.carFormData[name] = this.carFormData[key];
+        total = total - this.carFormData[key];
+      }
+      else {
+
+        console.log(total);
+        this.carFormData[name] = total;
+        total = 0;
+      }
+    }
+ ```
