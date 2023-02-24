@@ -18,6 +18,14 @@ this.startDate = formatDate(this.now.setDate(this.now.getDate() - 7), "yyyy-MM-d
 ```javascript
 new Date("0001-01-01");
 ```
+## 날짜순으로 정렬
+```javascript
+  const sorted_list = this.oilSubGridData.sort(function (a, b) {
+    return new Date(a.ZARRDT).getTime() - new Date(b.ZARRDT).getTime();
+  });
+        sorted_list.forEach(async (array: any) => {
+}
+  ```
 ## 시간 초기화
 ```javascript
 carData.startTime1 ?? "54000000"
@@ -29,7 +37,7 @@ this.FormData.BIDNO.padStart(3, '0');
 ```
 ## 0 뒷부분부터 채우기
 ```javascript
-this.FormData.BIDNO.padeEnd(3, '0');
+this.FormData.BIDNO.padEnd(3, '0');
 ```
 ## 필드에 값 강제로 넣기
 ```javascript
@@ -94,7 +102,7 @@ setTimeout(() => {
 });
 }
   ```
-```
+
 ## 버튼 클릭시 버튼 변경 이벤트
 ```javascript
 manualRegis = (e:any) => {
@@ -118,3 +126,10 @@ manualRegis = (e:any) => {
 ```javascript
 setTimeout("location.reload(true);");
 ```
+## 딜레이 주기
+```javascript
+ setTimeout(() => {
+   this.popItemData.Z4PARVW = e.selectedValue;
+   /*this.tdlnrValue = e.selectedValue;*/
+ });
+ ```
