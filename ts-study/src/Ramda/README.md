@@ -55,6 +55,25 @@ console.log(
   curriedSum(1)(2)(3)(4), // 10
 );
 ```
+### 순수함수
+ - 람다 라이브러리가 제공하는 함수들은 항상 입력 변수의 상태를 변화시키지 않고 새로운 값을 반환함.
+ 
+### 선언형 프로그래밍
+- 선언형 프로그래밍에서 모든 입력 데이터는 단순 데이터보다배열 형태를 주로 사용함.
+```javascript
+const value = 1;
 
-### 순수 함수
-- 람다 라이브러리가 제공하는 함수들은 항상 입력 변수의 상태를 변화시키지 않고 새로운 값을 반환.
+const newArray = R.pipe(
+  R.map(R.inc)
+)([value]) // [2]
+```
+
+- R.pipe 안에서는 console.log()문을 직접 사용할 수 없으므로 반드시 R.tap 함수를 사용해야 함.
+
+### 사칙 연산 함수
+```javascript
+R.add(a: number)(b: number); // a + b
+R.subtract(a: number)(b: number); // a - b
+R.multiply(a: number)(b: number); // a * b
+R.divide(a: number)(b: number); // a / b
+```
