@@ -10,10 +10,9 @@
 Renderer는 xamarin에서 제공해주는 기능이며 각 디바이스별 native 컨트롤 모양을 화면에 그려주는 객
 - 한번 정의해놓은 UI위치에 각 플랫폼에 맞는 UI가 보여짐
 ![image](https://user-images.githubusercontent.com/72143238/227840782-35aeef43-0875-4d48-be75-dfdc4956ada4.png)
-Label 태그는 자리만 잡아놓는 역할
-<br>
-xamarin에서는 Label, Button 모두 View
-- CustomView.cs
+- Label 태그는 자리만 잡아놓는 역할
+- xamarin에서는 Label, Button 모두 View
+	- CustomView.cs
 ```javascript
 public class CustomView : ContentView
 
@@ -97,7 +96,7 @@ public class CustomView : ContentView
 ```
 - 위와 같이 하면 너무 복잡하기 때문에 속성 요소 구문이 필수적이다. 그래서 태그 내에서 다른 개체를 인스턴스화 하고 해당 속성을 설정 가능.
 - VerticalOptions LayoutOptions 속성
-``xaml
+```xaml
 <Label>
     ...
     <Label.VerticalOptions>
