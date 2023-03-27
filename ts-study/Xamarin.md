@@ -25,7 +25,7 @@ public class CustomView : ContentView
 ```
 - ContentView를 상속받은 클래스를 만들고 xaml에서 <local:CustomView WidthRequest="300" HeightRequest="300" BackgroundColor="Yellow" />
 
-
+## Layout
 ### Frame Layout
 - 단 하나의 view만 내부에 가질 수 있는 Layout
 - 아무런 옵션을 주지 않으면 전체 공간을차지함
@@ -50,9 +50,56 @@ public class CustomView : ContentView
 - Start, End, Center, Fill 4가지 옵션을 가지고 있다.
        - StackLayout Orientation="Vertical"에서 HorizontalOptions="Start, Center, End"는 왼쪽, 가운데, 오른쪽을 뜻함
 - 스텍 형식일 경우에 아래로 쌓이기 때문에 아래 공간이 남는다. 그렇기 때문에 VerticalOptions="CenterAndExpand" 옵션은 정 가운데에 놓고 남는 공간은 모두 할당 요청하는 옵션이다. 만약 EndAndExpand 일 경우는 해당 스텍이 제일 아래로 가고 남는 공간 역시 모두 할당 옵션
-       - 두가지 View가 VerticalOptions을 사용할 경우 똑같이 나눠가진다.
-       - VerticalOptions="FillAndExpand"을 사용하면 View 자체 크기가 커지지만 문구는 이동하지 않는다. 
-       - 문구를 이동시키려면 VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 옵션을 줘야한다.
+- 두가지 View가 VerticalOptions을 사용할 경우 똑같이 나눠가진다.
+- VerticalOptions="FillAndExpand"을 사용하면 View 자체 크기가 커지지만 문구는 이동하지 않는다. 
+- 문구를 이동시키려면 VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 옵션을 줘야한다.
+
+### Grid
+- 행과 열을 나타내는 방법으로 Grid에 대한 태그 내에서 Grid.Row와 Grid.Column 특성을 사용하여 자식의 행과 열을 지정한다.
+- 기본값은 0이기 때문에 둘 이상의 행과 열에 걸쳐 있는지 여부를 나타낼 수 있다.
+```xaml
+<Label Text="Autosized cell"
+ Grid.Row="0" Grid.Column="0"
+ TextColor="White"
+ BackgroundColor="Blue" />
+ ```
+
+### Absolute Layout
+- 절대값과 상대값으로 Layout 내에서의 위치와 크기를 결정하는 Layout
+- 여러 개의 element를 가질 수 있는 Layout이다.
+- Absolute 라는 이름처럼 layout 안에서 x와 y의 좌표를 이용해 정확한 위치 지정 가능
+- 또 비율을 이용해 위치와 크기 지정 가능
+- 가로 100 세로 110의 위치에 폭 120,높이 130의 크기로 label 위치 *레이아웃 기준
+```xaml
+<Label Text="test" AbsoluteLayout.LayoutBounds="100, 110, 120, 130" BackgroundColor="Green" />
+```
+- AbsoluteLayout.LayoutFlags 속성을 사용하여 어떤 값에 대한 비율을 사용할지 지정
+  - All (x,y,폭,높이 모두 비율 사용)
+
+  - HeightProportional (높이만 layout에 대한 비율 / 다른 값은 절)
+
+  - None (절대값)
+
+  - PositionProportional (x, y는 비율 / 크기는 절대값)
+
+  - SizeProportional (크기만 비율 / x, y는 절대값)
+
+  - WidthProportional (폭 비율)
+
+  - HeightProportional (높이 비율)
+
+  - XProportional (X 비율)
+
+  - YProportional (Y 비율)
+
+### Label View
+- Label Option
+  - 글씨 크기 / FontSize="" _ Large,Medium,Small,Default,Micro,숫
+  - 글씨 모양 / FontAttributes="" _ Bold,italic
+  - 다음 줄에도 라인 한 줄로 표시 / LineBreakMode="CharacterWrap"
+  - 다음 줄에 단어부터 시작 / LineBreakMode="WordWrap"
+  - NoWrap 최대한 보여주고 그 이상 오버되는건 짤림.
+
 ## 필수 XAML 구문
 ### 속성요소
 - 일반적인 XML
@@ -128,39 +175,13 @@ public class CustomView : ContentView
 ```
 - 행과 열을 정의하기 위해서는 RowDefinitions과 ColumnDefinitions에 대한 속성 요소가 필요하다.
 
-### 연결된 속성
-#### Grid
-- 행과 열을 나타내는 방법으로 Grid에 대한 태그 내에서 Grid.Row와 Grid.Column 특성을 사용하여 자식의 행과 열을 지정한다.
-- 기본값은 0이기 때문에 둘 이상의 행과 열에 걸쳐 있는지 여부를 나타낼 수 있다.
+## xaml과 xaml.cs 파일간의 바인딩
+- xaml = UI
+- xaml.cs = 기능
 ```xaml
-<Label Text="Autosized cell"
- Grid.Row="0" Grid.Column="0"
- TextColor="White"
- BackgroundColor="Blue" />
- ```
-#### AbsoluteLayout 바둑판 패턴
-- AbsoluteLayout은 여러 개의 엘리먼트들을 가질 수 있는 layout
-- Absolute 라는 이름처럼 layout 안에서 x와 y의 좌표를 이용해 정확한 위치 지정 가
-- 또 비율을 이용해 위치와 크기 지정 가능
-- 가로 100 세로 110의 위치에 폭 120,높이 130의 크기로 label 위치 *레이아웃 기준
-```xaml
-<Label Text="test" AbsoluteLayout.LayoutBounds="100, 110, 120, 130" BackgroundColor="Green" />
+<Label Text="{Binding 바인딩할 변수}" />
 ```
-- AbsoluteLayout.LayoutFlags 속성을 사용하여 어떤 값에 대한 비율을 사용할지 지정
-  - All (x,y,폭,높이 모두 비율 사용)
-
-  - HeightProportional (높이만 layout에 대한 비율 / 다른 값은 절)
-
-  - None (절대값)
-
-  - PositionProportional (x, y는 비율 / 크기는 절대값)
-
-  - SizeProportional (크기만 비율 / x, y는 절대값)
-
-  - WidthProportional (폭 비율)
-
-  - HeightProportional (높이 비율)
-
-  - XProportional (X 비율)
-
-  - YProportional (Y 비율)
+1. cs 파일에서 prop 탭탭 / 문자 타입, 변수명 설정 ex) public string PHONE {get; set;}
+2. 내부에서 사용할 private 선언 ex) private string m_strPHONE; / public string PHONE {get{ return m_strPHONE;} set{m_strPHONE = value; OnPropertyChanged();}}
+3. public MainPage()안에 변수에 넣을 데이터 입력 ex) PHONE = "010-1234-5678"
+4. 1번 클래스인 것을 명시 / ex) this.BindingContext = this;
