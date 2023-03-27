@@ -1,7 +1,60 @@
 # Xamarin
 
-## 필수 XAML 구문
+## UI
+- Xamarin에서의 UI는 Page, View, Layout로 구성되어있다.
+- Page는 스마트폰에서 보이는 한 화면
+- View는 Label이나 Button 같은 기능
+- Page 안에 다른 View나 Layout들이 어떻게 배치되는지 결정해주는 위치매니저
 
+### Custom Renderer
+Renderer는 xamarin에서 제공해주는 기능이며 각 디바이스별 native 컨트롤 모양을 화면에 그려주는 객
+- 한번 정의해놓은 UI위치에 각 플랫폼에 맞는 UI가 보여짐
+![image](https://user-images.githubusercontent.com/72143238/227840782-35aeef43-0875-4d48-be75-dfdc4956ada4.png)
+Label 태그는 자리만 잡아놓는 역할
+<br>
+xamarin에서는 Label, Button 모두 View
+- CustomView.cs
+```javascript
+public class CustomView : ContentView
+
+{
+	public CustomView ()
+	{
+       
+	}
+}
+```
+- ContentView를 상속받은 클래스를 만들고 xaml에서 <local:CustomView WidthRequest="300" HeightRequest="300" BackgroundColor="Yellow" />
+
+
+### Frame Layout
+- 단 하나의 view만 내부에 가질 수 있는 Layout
+- 아무런 옵션을 주지 않으면 전체 공간을차지함
+- 하나의 element만 넣을 수 있음
+       - HorizontalOptions="Center" (들어있는 view 크기만큼 세로 center로)
+       - VerticalOptions="Center" (들어있는 view 크기만큼 가 center로)
+       - OutlineColor="Red" (테두리 색깔 조정)
+       - CornerRadius="15" (꼭지점 각도 조정)
+### Scroll Layout
+- 스크롤 기능을 지원해주는 Layout
+- StackLayout처럼 여러 view가 있는 곳에 사용 가능
+
+### Stack Layout
+- Frame이나 ScrollView와 달리 여러 개의 요소들을 받을 수 있는 Layout
+- Stack Layout에서 중요한 속성 2가지는 **Orientation**과 **Spacing**
+- **Orientation**은 방향 *기본값은 Vertical*
+       - StackLayout Orientation="Horizontal"처럼 바꿔주면 세로로 Stack이 쌓이게 됨
+- **Spacing**은 간격 *기본값은6*
+       - StackLayout Orientation="Vertical" Spacing="20" 가로로 쌓인 Stack의 간격이 20만큼 벌어지게 됨
+
+- View들은 Layout 관련 옵션을 가지고 있는데 위치를 변경할 때 사용하는 것이 **HorizontalOptions(가로 위치)**과 **VerticalOptions(세로 위치)**
+- Start, End, Center, Fill 4가지 옵션을 가지고 있다.
+       - StackLayout Orientation="Vertical"에서 HorizontalOptions="Start, Center, End"는 왼쪽, 가운데, 오른쪽을 뜻함
+- 스텍 형식일 경우에 아래로 쌓이기 때문에 아래 공간이 남는다. 그렇기 때문에 VerticalOptions="CenterAndExpand" 옵션은 정 가운데에 놓고 남는 공간은 모두 할당 요청하는 옵션이다. 만약 EndAndExpand 일 경우는 해당 스텍이 제일 아래로 가고 남는 공간 역시 모두 할당 옵션
+       - 두가지 View가 VerticalOptions을 사용할 경우 똑같이 나눠가진다.
+       - VerticalOptions="FillAndExpand"을 사용하면 View 자체 크기가 커지지만 문구는 이동하지 않는다. 
+       - 문구를 이동시키려면 VerticalTextAlignment="Center" HorizontalTextAlignment="Center" 옵션을 줘야한다.
+## 필수 XAML 구문
 ### 속성요소
 - 일반적인 XML
 ```xaml
