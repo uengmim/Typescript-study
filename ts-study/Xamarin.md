@@ -185,3 +185,6 @@ public class CustomView : ContentView
 2. 내부에서 사용할 private 선언 ex) private string m_strPHONE; / public string PHONE {get{ return m_strPHONE;} set{m_strPHONE = value; OnPropertyChanged();}}
 3. public MainPage()안에 변수에 넣을 데이터 입력 ex) PHONE = "010-1234-5678"
 4. 1번 클래스인 것을 명시 / ex) this.BindingContext = this;
+
+## MVVM
+- MVVM이란 Model-View-ViewModel
