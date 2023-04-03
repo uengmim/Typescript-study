@@ -122,10 +122,6 @@ manualRegis = (e:any) => {
   this.form.instance.repaint();
 }
 ```
-## 페이지 리로드
-```javascript
-setTimeout("location.reload(true);");
-```
 ## 딜레이 주기
 ```javascript
  setTimeout(() => {
