@@ -62,7 +62,6 @@ console.log(
 - 선언형 프로그래밍에서 모든 입력 데이터는 단순 데이터보다배열 형태를 주로 사용함.
 ```javascript
 const value = 1;
-
 const newArray = R.pipe(
   R.map(R.inc)
 )([value]) // [2]
