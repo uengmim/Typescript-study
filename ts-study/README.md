@@ -90,6 +90,21 @@ setTimeout(() => {
 }, 100);
 }
 ```
+
+## 데이터그리드 특정 컬럼 border line
+```javascript
+  onCellPrepared(e: any) {
+    if (e.column.dataField === "CONPR") {
+      // 변경하려는 특정 열의 데이터 필드 확인
+
+      if (e.rowType === "data") {
+        // 데이터 셀에 대한 처리
+        e.cellElement.style.border = '2px solid red'; // 원하는 색상 및 스타일로 변경
+      }
+    }
+  }
+```
+
 ## 파서블 엔트리 선택시 연관 데이터 출력
 ```javascript
 onValueChanged(e: any) {
